@@ -1,6 +1,17 @@
 from rest_framework import serializers
 from .models import BlogPost,CustomUser, Tag , Category
 
+
+class TagSerializer(serializers.ModelSerializer):
+    class Meta :
+        model = Tag 
+        fields = ['tag_name']
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta :
+        model = Category
+        fields = ['category_name']
+
 class UserSerializer(serializers.ModelSerializer):
     """ Serializer for the User Model
     """
@@ -43,11 +54,24 @@ class BlogPostSerializer(serializers.ModelSerializer):
     """
     tags = serializers.CharField(max_length = 120, write_only=True)
     categories = serializers.CharField(max_length = 120, write_only=True)
+
+    tag_field = serializers.SerializerMethodField()
+
+    category_field = serializers.SerializerMethodField()
     class Meta :
         model = BlogPost
         exclude = ['user']
 
+    def get_tag_field(self , obj):
+        tags = obj.tags.all()
+        serializer = TagSerializer(tags, many=True)
+        return serializer.data
     
+    def get_category_field(self, obj):
+        categories = obj.categories.all()
+        serializer = CategorySerializer(categories, many=True)
+        return serializer.data
+
     def create(self, validated_data):
         request = self.context.get('request')
         tags = validated_data.pop('tags', None)
