@@ -3,11 +3,15 @@ from .models import BlogPost,CustomUser, Tag , Category
 
 
 class TagSerializer(serializers.ModelSerializer):
+    """A serializer for the Tag Model
+    """
     class Meta :
         model = Tag 
         fields = ['tag_name']
 
 class CategorySerializer(serializers.ModelSerializer):
+    """A serializer from the Category Model
+    """
     class Meta :
         model = Category
         fields = ['category_name']
