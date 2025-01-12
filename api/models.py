@@ -6,6 +6,9 @@ from datetime import date
 
 class UserManager(BaseUserManager):
 
+    """Custom User Manager to Mangage the User Model
+    """
+
     def create_user(self, email , password , **other_fields):
         if not email :
             raise ValueError("Email must be provided")
@@ -24,6 +27,9 @@ class UserManager(BaseUserManager):
     
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
+
+    """Custom User Model to make Username and email Unique Values
+    """
 
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=120, unique=True)

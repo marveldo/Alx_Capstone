@@ -2,6 +2,8 @@ from rest_framework import serializers
 from .models import BlogPost,CustomUser, Tag , Category
 
 class UserSerializer(serializers.ModelSerializer):
+    """ Serializer for the User Model
+    """
     class Meta :
         model = CustomUser
         fields = ['id','username', 'email', 'password', 'first_name', 'last_name']
@@ -37,6 +39,8 @@ class UserSerializer(serializers.ModelSerializer):
         return instance
 
 class BlogPostSerializer(serializers.ModelSerializer):
+    """ Serializer for the Blog Model
+    """
     tags = serializers.CharField(max_length = 120, write_only=True)
     categories = serializers.CharField(max_length = 120, write_only=True)
     class Meta :
