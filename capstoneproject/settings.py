@@ -26,7 +26,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['alx-capstone-fw3gi1syy-marveldos-projects.vercel.app']
+ALLOWED_HOSTS = ['.vercel.app']
 
 
 # Application definition
