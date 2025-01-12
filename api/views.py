@@ -55,7 +55,7 @@ class UpdateBlog(viewsets.GenericViewSet, mixins.UpdateModelMixin):
         serializer = self.get_serializer(blog , data = request.data , context={'request' : request}, partial=True)
         serializer.is_valid(raise_exception = True)
         self.perform_update(serializer=serializer)
-        return response.Response(data , status=status.HTTP_200_OK)
+        return response.Response(serializer.data , status=status.HTTP_200_OK)
 
 class DeleteBlog(viewsets.GenericViewSet, mixins.DestroyModelMixin):
     """View to Delete A blog User Must be Authenticated and must be the owner of the Blog

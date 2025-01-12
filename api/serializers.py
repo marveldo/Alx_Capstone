@@ -65,3 +65,21 @@ class BlogPostSerializer(serializers.ModelSerializer):
 
         blog.save()
         return blog
+    
+    def update(self, instance, validated_data):
+        tags = validated_data.pop('tags', None)
+        categories = validated_data.pop('categories', None)
+
+        for name , value in validated_data.items():
+            setattr(instance, name, value)
+
+        if tags is not None :
+            tag , created = Tag.objects.get_or_create(tag_name = tags)
+            instance.tags.add(tag)
+        
+        if categories is not None :
+            category , created = Category.objects.get_or_create(category_name = categories)
+            instance.categories.add(category)
+
+        instance.save() 
+        return instance

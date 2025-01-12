@@ -33,6 +33,6 @@ To visit Live Link
 4. /api/blogs/<int>/ GET This endpoint Gets a blogs by its id
 5. /api/blogs/ GET this endpoint gets all blogs
 6. /api/blogs/<int>/ PUT(AUTHENTICATED) fields : title , content, author , published_date , tags , categories
-7. /api/blogs/<int>/ DELETE(AUTHENTICATED) : Deletes a blog the user must be the owner of the blog unless it returns a 403
+7. /api/delete-blogs/<int>/ DELETE(AUTHENTICATED) : Deletes a blog the user must be the owner of the blog unless it returns a 403
 8. /api/users/<int>/ GET : Gets a user by id
 
