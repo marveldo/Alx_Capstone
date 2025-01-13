@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework import viewsets , mixins , permissions , response, status, pagination, renderers
 from .serializers import UserSerializer , BlogPostSerializer, CustomUser, BlogPost
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 class UserViewset(viewsets.ModelViewSet):
     """A complete User Viewset To perform all CRUD operations on the User Model
@@ -10,6 +11,13 @@ class UserViewset(viewsets.ModelViewSet):
 
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
+    renderer_classes = [renderers.JSONRenderer]
+
+class LoginView(TokenObtainPairView):
+    """The View That Logs In a User
+
+    
+    """
     renderer_classes = [renderers.JSONRenderer]
 
 
