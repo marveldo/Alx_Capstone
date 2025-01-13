@@ -67,11 +67,15 @@ class BlogPostSerializer(serializers.ModelSerializer):
         exclude = ['user']
 
     def get_tag_field(self , obj):
+        """Method that handles the Tag Field Method serializer
+        """
         tags = obj.tags.all()
         serializer = TagSerializer(tags, many=True)
         return serializer.data
     
     def get_category_field(self, obj):
+        """Method that handles the Category Field Method Serializer
+        """
         categories = obj.categories.all()
         serializer = CategorySerializer(categories, many=True)
         return serializer.data
